@@ -3,26 +3,35 @@ data = [[1,2,3,4],
         [9,10,11,12],
         [13,14,15,16]]
 
+data = [[1,2],
+        [3,4]]
+
+data2 = [[1,2,3],
+        [4,5,6],
+        [7,8,9]]
+data = [[]]
 
 def snail(data):
+    if data==[[]]: return []
     size = len(data)
     r,c = 0, 0
-    
+    ans = []
     moving = "right"
-    print(data[r][c])
-    #data[r][c] = "x"
+    if data[r][c]!= "x": ans.append(data[r][c])
+    
 
-    for i in range(len(data)*len(data)):
-        print("ROW {} COLUMN {}".format(r,c))
+    for i in range((len(data)*len(data))):
+        #print("ROW {} COLUMN {} next move = {}".format(r,c, moving))
         
         if moving == "right":
             try:
                 c+=1
-                print(data[r][c])
-                #data[r][c] = "x"
+                if data[r][c]!= "x": ans.append(data[r][c])
                 if data[r][c] == "x":
-                    moving = "dowm"
+                    #print("go right ist X")
+                    moving = "down"
                     c-=1
+                    #print("MOVING {} r,c = {}{}".format(moving, r, c))
             except:
                 c-=1
                 moving = "down"
@@ -30,8 +39,8 @@ def snail(data):
         if moving == "down":
             try:
                 r+=1
-                print(data[r][c])
-                #data[r][c] = "x"
+                if data[r][c]!= "x": ans.append(data[r][c])
+            
                 if data[r][c] == "x":
                     moving = "left"
                     r -=1
@@ -43,8 +52,7 @@ def snail(data):
             try:
                 c-=1
                 if c>-1:
-                    print(data[r][c])
-                    #data[r][c] = "x"
+                    if data[r][c]!= "x": ans.append(data[r][c])
                 else:
                     moving = "up"
                     #c +=1
@@ -59,7 +67,7 @@ def snail(data):
             try:
                 r-=1
                 if (r > -1) and (data[r][c] != "x"):
-                    print(data[r][c])
+                    if data[r][c]!= "x": ans.append(data[r][c])
                 else:
                     moving = "right"
                     r+=1
@@ -69,5 +77,7 @@ def snail(data):
 
         data[0][0] = "x"           
         data[r][c] = 'x'
+    return(ans)
 snail(data)
+
 
